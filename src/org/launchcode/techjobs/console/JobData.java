@@ -62,9 +62,25 @@ public class JobData {
      * with "Enterprise Holdings, Inc".
      *
      * @param column   Column that should be searched.
-     * @param value Value of teh field to search for
+     * @param value Value of the field to search for
      * @return List of all jobs matching the criteria
      */
+    public static ArrayList<HashMap<String, String >>findByValue(String all, String value)  {
+
+        loadData();
+
+        ArrayList<HashMap<String, String>> job = new ArrayList<>();
+
+        for (HashMap<String, String> searchAll: allJobs)  {
+
+            String aValue = searchAll.get(all);
+
+            if (aValue.contains(value));  {
+                job.add(searchAll);
+            }
+        }
+        return job;
+    }
     public static ArrayList<HashMap<String, String>> findByColumnAndValue(String column, String value) {
 
         // load data, if not already loaded
