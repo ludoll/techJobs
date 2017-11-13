@@ -65,21 +65,32 @@ public class JobData {
      * @param value Value of the field to search for
      * @return List of all jobs matching the criteria
      */
-    public static ArrayList<HashMap<String, String >>findByValue(String all, String value)  {
+    public static ArrayList<HashMap<String, String >>findByValue(String value)  {
 
         loadData();
 
-        ArrayList<HashMap<String, String>> job = new ArrayList<>();
+        ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
 
-        for (HashMap<String, String> searchAll: allJobs)  {
+        for (HashMap<String, String> job : allJobs)  {
 
-            String aValue = searchAll.get(all);
+            for (String key : job.keySet())  {
 
-            if (aValue.contains(value));  {
-                job.add(searchAll);
+                String aKey = job.get(key).toLowerCase();
+
+                if (aKey.contains(value.toLowerCase())) {
+                    if (jobs.contains(job))  {
+                        break;
+                    }
+
+                    jobs.add(job);
+                }
+
+
             }
+
+
         }
-        return job;
+        return jobs;
     }
     public static ArrayList<HashMap<String, String>> findByColumnAndValue(String column, String value) {
 

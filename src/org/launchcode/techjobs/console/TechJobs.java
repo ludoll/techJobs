@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import static org.launchcode.techjobs.console.JobData.findByValue;
+
 /**
  * Created by LaunchCode
  */
@@ -60,8 +62,14 @@ public class TechJobs {
                 System.out.println("\nSearch term: ");
                 String searchTerm = (in.nextLine());
 
-                if (searchField.equals("all")) {
-                    printJobs(JobData.findByValue(searchField, searchTerm));
+                if (!searchField.isEmpty()) {
+                    if(findByValue(searchTerm).isEmpty()){
+                        System.out.println("I got nothin' yo.");
+
+                    } else {
+                        printJobs(findByValue(searchTerm));
+                    }
+                    printJobs(findByValue(searchTerm));
                 } else {
                     printJobs(JobData.findByColumnAndValue(searchField, searchTerm));
                 }
